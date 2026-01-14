@@ -1,0 +1,8 @@
+.rect{
+  width: 300px;
+  height: 50px;
+  background-color: crimson;
+  color: white;
+  text-align: center;
+  line-height: 50px;
+}
