@@ -27,7 +27,7 @@ const UseState1 = () => {
     <h2>{title}</h2>
 
     <button type='button' onClick={() => {
-      setTitle(17); //a변수의 값을 10으로 변경하는 코드, 호출
+      setTitle(10); //a변수의 값을 10으로 변경하는 코드, 호출
     }}>클릭</button>
     </>
   )
@@ -38,7 +38,7 @@ export default UseState1
 // <흐름>
 // 1. 처음부터 끝까지 실행
 // 2. return안 그림 화면에 그림
-// 3. 버튼을 누르면 title에 17이 저장
+// 3. 버튼을 누르면 title에 10이 저장
 // 4. 리렌더링해서 다시 컴포넌트의 처음부터 다시 실행
 // 5. useState 컴포넌트는 무시함!
 // 6. console.log(); 실행

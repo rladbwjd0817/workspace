@@ -1,0 +1,17 @@
+.count_div > :first-child {
+  width: 250px;
+  height: 100px;
+  background-color: lightgray;
+  padding: 8px;
+}
+
+.count_div > div :first-child{
+  font-size: 0.9rem;
+}
+
+.count_div > :last-child{
+  margin-top: 10px;
+  width: 265px;
+  height: 40px;  
+  background-color: lightgrey;
+}
