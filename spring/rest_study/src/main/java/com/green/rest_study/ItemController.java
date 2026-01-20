@@ -49,20 +49,21 @@ public class ItemController {
 //  상품번호로 특정된 하나의 상품 정보를 삭제하는 메서드
   @DeleteMapping("/{productNum}")
   public List<ItemDTO> deleteProductNum(@PathVariable("productNum") int deleteProductNum) {
-    for (ItemDTO e : itemList) {
-      if (e.getProductNum() == deleteProductNum) {
-        itemList.remove(e);
+//    for (ItemDTO e : itemList) {
+//      if (e.getProductNum() == deleteProductNum) {
+//        itemList.remove(e);
+//      }
+//    }
+    System.out.println(deleteProductNum + "번 상품을 삭제했습니다.");
+//    return itemList;
+
+    for (int i = 0; i < itemList.size(); i++){
+      if (itemList.get(i).getProductNum() == deleteProductNum){
+        itemList.remove(i);
       }
     }
     return itemList;
-
-//    for (int i = 0; i < itemList.size(); i++){
-//      if (itemList.get(i).getProductNum() == deleteProductNum){
-//        itemList.remove(i);
-//      }
-//    }
-//    return itemList;
-//  }
+  }
 
 
   }
