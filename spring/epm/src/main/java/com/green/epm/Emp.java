@@ -11,7 +11,7 @@ import lombok.*;
 public class Emp {
   private int empNum;
   private String name;
-  private String empName;
+  private String deptName;
   private int salary;
   private String rank;
 

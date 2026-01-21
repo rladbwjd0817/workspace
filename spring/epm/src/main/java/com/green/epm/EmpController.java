@@ -45,46 +45,51 @@ public class EmpController {
   }
 
 //  사원등록요청에 응답하는 api, 요청시 등록할 사원정보가 함께 전달
-//  url : (POST) localhost:8080/emps/{newEmp}
+//  url : (POST) localhost:8080/emps
   @PostMapping("")
-  public List<Emp> postEmp(Emp newEmp){
-    for (int i = 0; i < empList.size(); i++){
-      empList.add(newEmp);
-    }
+  public void postEmp(@RequestBody Emp regEmp){
+    System.out.println("사원 등록 실행");
+    System.out.println(regEmp);
+    empList.add(regEmp);
+
     System.out.println("해당 사원이 등록되었습니다.");
-    return empList;
+
   }
 
 //  사번을 통해 특정 사원 한명을 삭제하는 요청이 오면 이에 응답하는 api
-//  url: (DELETE) localhost:8080/emps/
+//  url: (DELETE) localhost:8080/emps/{empNum}
   @DeleteMapping("/{empNum}")
-  public List<Emp> deleteEmp(@PathVariable("empNum") int empNum){
+  public String deleteEmp(@PathVariable("empNum") int empNum){
+    System.out.println("사원 삭제 = " + empNum);
 
-    for (int i = 0; i < empList.size(); i++){
-      if (empList.get(i).getEmpNum() == empNum){
-        empList.remove(i);
-      }
-    }
-    System.out.println("해당 사원이 삭제되었습니다.");
-    return empList;
+//    for (int i = 0; i < empList.size(); i++){
+//      if (empList.get(i).getEmpNum() == empNum){
+//        empList.remove(i);
+//      }
+//    }
+//    System.out.println("해당 사원이 삭제되었습니다.");
+//    return empList;
+    return "삭제 완료";
   }
 
 //  사번을 통해 특정 사원 한 명의 정보 수정 요청이 오면 이에 응답하는 api
 //  요청 시 정보를 수정하려는 사원의 사번과 일치하는 사원의 수정할 급여, 부서명 정보가 함께 전달됨.
 //  url : (PUT) localhost:8080/emps/{empNum}
   @PutMapping("/{empNum}")
-  public Emp putEmpNum(@PathVariable("empNum") int empNum){
-    Emp result = null;
-
-    for (Emp e : empList){
-      if (e.getEmpNum() == empNum){
-        e.setSalary(e.getSalary());
-        e.setEmpName(e.getEmpName());
-      }
-      result = e;
-    }
-    System.out.println("사원의 정보가 수정되었습니다.");
-    return result;
+  public void putEmpNum(@PathVariable("empNum") int empNum, @RequestBody Emp emp){
+    System.out.println("empNum = " + empNum);
+    System.out.println(empNum);
+//    Emp result = null;
+//
+//    for (Emp e : empList){
+//      if (e.getEmpNum() == empNum){
+//        e.setSalary(e.getSalary());
+//        e.setDeptName(e.getDeptName());
+//      }
+//      result = e;
+//    }
+//    System.out.println("사원의 정보가 수정되었습니다.");
+//    return result;
   }
 
 
