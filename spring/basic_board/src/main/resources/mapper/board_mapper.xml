@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<!-- namespace에는 xml파일과 연결할 Mapper interface 파일명을 패키지를 포함하여 적어주세요 -->
+<mapper namespace="com.green.basic_board.mapper.BoardMapper">
+    <resultMap id="board" type="com.green.basic_board.dto.BoardDTO">
+        <!-- type은 저기에 연결하겠습니다.-->
+        <id column="BOARD_NUM" property="boardNum"/>
+        <result column="TITLE" property="title"/>
+        <result column="WRITER" property="writer"/>
+        <result column="CONTENT" property="content"/>
+        <result column="READ_CNT" property="readCnt"/>
+        <result column="CREATE_DATE" property="createDate"/>
+        <!-- DB에서 column의 값을 조회하면 boardDTO 안에 있는 변수에 하나씩 저장하겠다.-->
+    </resultMap>
+
+    <!--쿼리 실행 메서드-->
+	<select id="test1" resultType="String">
+        SELECT TITLE
+        FROM BASIC_BOARD
+        WHERE BOARD_NUM = 1
+    </select>
+
+    <!--쿼리가 여러 행 나오는지 하나만 나오는지 예상하기-->
+    <!--resultType,Map - 조회한 하나의 행 데이터를 가져오기 위해서 사용-->
+    <select id="test2" resultType="int">
+        SELECT BOARD_NUM
+        FROM BASIC_BOARD
+    </select>
+
+    <select id="test3" resultMap="board">
+        <!--클래스 자료형을 사용할 땐 resultMap사용-->
+        <!--조회된 데이터를 board라는 아이디를 지닌 resulMap에 작성된 형태로
+        자바에 가져올게요-->
+        SELECT BOARD_NUM
+            , TITLE
+            , CONTENT
+            , WRITER
+        FROM BASIC_BOARD
+        WHERE BOARD_NUM = #{boardNum}
+        <!-- #{} => 쿼리문에서 사용하는 자바 변수
+         변수명은 내가 넣을 데이터와 같은 이름을 가진 컬럼명으로 넣어주면 됨.-->
+    </select>
+
+    <select id="test4" resultMap="board">
+        SELECT BOARD_NUM
+            , TITLE
+            , WRITER
+            , CREATE_DATE
+        FROM BASIC_BOARD
+        WHERE BOARD_NUM &gt; #{boardNum}
+        AND READ_CNT &lt; #{readCnt}
+        <!--등호 넣을 때 주의!
+        > : &gt;
+        -->
+    </select>
+
+
+
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
