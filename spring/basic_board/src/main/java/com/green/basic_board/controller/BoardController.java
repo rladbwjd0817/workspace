@@ -3,9 +3,7 @@ package com.green.basic_board.controller;
 import com.green.basic_board.dto.BoardDTO;
 import com.green.basic_board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -49,6 +47,28 @@ public class BoardController {
     return result4;
   }
 
+  @PostMapping("/test5")
+  public void regBoard(@RequestBody BoardDTO boardDTO){
+    System.out.println(boardDTO);
+    boardService.regBoard(boardDTO);
+  }
+
+  @DeleteMapping("/test6/{boardNum}")
+  public int deleteBoard(@PathVariable("boardNum") int boardNum){
+    System.out.println("삭제 할 글 번호 : " + boardNum);
+    int result5 = boardService.deleteBoard(boardNum);
+    return result5;
+  }
+
+//  url : (PUT) localhost:8080/boards/2
+  @PutMapping("/test7/{boardNum}")
+  public void updateOneBoard(@PathVariable("boardNum") int boardNum, @RequestBody BoardDTO boardDTO){
+    System.out.println("수정 할 글 번호 : " + boardNum);
+
+    boardDTO.setBoardNum(boardNum);
+    boardService.updateBoard(boardDTO);
+    System.out.println(boardDTO);
+  }
 
 
 }

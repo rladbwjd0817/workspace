@@ -12,7 +12,14 @@ import java.util.List;
 public interface BoardMapper {
 
   //메서드명은 해당 쿼리를 실행시키려면 그 쿼리의 아이디랑 일치시켜야 함
+
 //  메서드의 리턴타입 : 쿼리 실행 결과 전체 데이터를 담을 수 있는 자료형
+//  -> select : 조회되는 데이터에 따라 리턴 타입이 달라짐
+//  -> insert, delete, update : void or int 로 리턴타입을 줌.
+//     => 쿼리 실행 결과 삽입되거나 지워지거나 수정되는 행(데이터)의 수 : int 로 리턴
+//     => 리턴할게 없으면 void
+
+
 //  메서드의 리턴타입 != resultType
 //  메서드의 매개변수 : 쿼리 실행 시 채워줘야 하는 데이터
 //  => 쿼리가 완성본이면 채워줘야 할 게 없기에 매개변수는 빈칸으로 내비둠
@@ -29,4 +36,19 @@ public interface BoardMapper {
   List<BoardDTO> test4(BoardDTO boardDTO);
   //전체 데이터가 행이 2개 나오니 BoardDto 하나만 쓸게 아니라 List자료형으로 리턴해야 함.
 //  BoardDTO안에 boardNum, readCnt 둘 다 있어서 가능함
+
+  void insertBoard(BoardDTO boardDTO);
+
+  int deleteOneBoard(int boardNum);
+
+  void updateOneBoard(BoardDTO boardDTO);
+
+
+
+
+
+
+
+
 }
+

@@ -46,6 +46,22 @@ public class BoardService {
     return result4;
   }
 
+//  select는 return값이 있어서 return을 넣어야 하지만 그 외엔 return값이 없으면
+//  안넣어도 됨
+
+  public void regBoard(BoardDTO boardDTO){
+    boardMapper.insertBoard(boardDTO);
+  }
+
+  public int deleteBoard(int boardNum){
+    int result5 = boardMapper.deleteOneBoard(boardNum);
+    return result5;
+  }
+
+  public void updateBoard(BoardDTO boardDTO){
+    boardMapper.updateOneBoard(boardDTO);
+  }
+
 
 
 
