@@ -5,7 +5,6 @@ import ItemForm from './ItemForm.jsx'
 import ItemList from './ItemList.jsx'
 
 createRoot(document.getElementById('root')).render(
-    // <App />
-    // <ItemForm />
-    <ItemList />
+    <App />
+    
 )

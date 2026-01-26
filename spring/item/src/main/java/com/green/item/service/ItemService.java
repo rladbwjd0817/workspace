@@ -38,6 +38,19 @@ public class ItemService {
     return result;
   }
 
+//  상품 상세 조회 기능 실행 메서드
+  public ItemDTO selectOneItem(int itemNum){
+    ItemDTO result2 = itemMapper.selectOneItem(itemNum);
+    return result2;
+  }
 
+//  상품명과 가격 수정 기능 실행 메서드
+  public void putItem(ItemDTO itemDTO){
+    itemMapper.updateItem(itemDTO);
+  }
 
+//  상품 삭제 기능
+  public void deleteItem(int itemNum){
+    itemMapper.deleteItem(itemNum);
+  }
 }

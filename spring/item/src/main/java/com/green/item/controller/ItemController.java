@@ -34,4 +34,33 @@ public class ItemController {
     List<ItemDTO> result = itemService.selectItem();
     return result;
   }
+
+//  상품 상세 조회 API
+//  url : (GET) localhost:8080/items/3
+  @GetMapping("/{itemNum}")
+  public ItemDTO getOneItem(@PathVariable ("itemNum") int itemNum){
+    ItemDTO result2 = itemService.selectOneItem(itemNum);
+    System.out.println("조회결과");
+    System.out.println(result2);
+    return result2;
+//    return하면 리액트가 값을 가져감!
+  }
+
+//  상품명과 가격 수정 API
+//  url : localhost:8080/items/7
+  @PutMapping("/{itemNum}")
+  public void putItem(@PathVariable("itemNum") int itemNum, @RequestBody ItemDTO itemDTO) {
+    System.out.println("상품명과 가격을 수정합니다.");
+    System.out.println("itemNum = " + itemNum);
+    System.out.println(itemDTO);
+    itemService.putItem(itemDTO); //쿼리 실행
+  }
+
+//  상품삭제 API
+//  url : (DELETE) localhost:8080/items/5
+  @DeleteMapping("/{itemNum}")
+  public void deleteItem(@PathVariable("itemNum") int itemNum){
+    itemService.deleteItem(itemNum);
+  }
+
 }
