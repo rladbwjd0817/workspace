@@ -1,0 +1,23 @@
+/* 태그로 선택자 쓰면 안됨 -> 만드는 클래스별 모든 ul이 적용됨.*/
+
+/* 쓰는 방법 2가지 */
+/* 리액트는 동시에 적용되기에 다른 것과 겹치지 않도록 클래스네임 뒤에 중복되지 않는 글자들을 알아서 넣어줌*/
+/* 1. import에 .module 쓰기
+   2. 클래스네임에 {}써*/
+
+.container{
+  background-color: black;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 16px;
+}
+
+.menu{
+  display: flex;
+  gap: 15px;
+  color: white;
+}
+

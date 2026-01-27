@@ -1,0 +1,4 @@
+package com.green.board.mapper;
+
+public interface BoardMapper {
+}
