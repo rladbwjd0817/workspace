@@ -1,0 +1,137 @@
+@font-face {
+    font-family: 'Paperozi';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-6SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-display: swap;
+}
+
+.container{
+  width: 100%;
+  
+}
+
+.menu > ul{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.menu li{
+  font-family: 'Paperozi';
+  font-size: 1.2rem;
+}
+
+.menu li:hover{
+  color: orange;
+  cursor: pointer;
+}
+
+.menu{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 200px;
+  padding: 15px 10px;
+  margin-top: 15px;
+}
+
+.menu > input[type="text"]{
+  position: relative;
+  width: 250px;
+  height: 30px;
+  border: 1px solid lightgray;
+}
+
+.menu > i{
+  position: absolute;
+  position: fixed;
+  right: 140px;
+  color: orange;
+}
+
+.banner > div{
+  position: relative;
+}
+
+.banner img{
+  width: 100%;
+  height: 300px;
+}
+
+.banner-text{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner-text > h2{
+  font-family: 'Paperozi';
+  color: orange;
+  position: absolute;
+  top: -270px;
+  font-size: 2.4rem;
+  letter-spacing: 4px;
+}
+
+.banner-text > p{
+  position: absolute;
+  color: white;
+  top: -200px;
+  text-align: center;
+  white-space: pre-wrap;
+}
+
+.banner-text > button{
+  font-family: 'Paperozi';
+  letter-spacing: 1.2px;
+  background-color: orange;
+  color: white;
+  border: none;
+  width: 150px;
+  height: 30px;
+  position: absolute;
+  top: -135px;
+  cursor: pointer;
+}
+
+.free-templates{
+  text-align: center;
+}
+
+.free-templates > p{
+  font-size: 1.8rem;
+  margin-top: 50px;
+}
+
+.free-templates > img{
+  width: 320px;
+}
+
+.icon i{
+  border: 14px solid orange;
+  border-radius: 100%;
+  color: orange;
+  font-size: 2.5rem;
+  padding: 5px 10px;
+}
+
+.icon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 80px 150px 0px 250px;
+  width: 80%;
+  text-align: center;
+}
+
+.icon h5 {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+
+.icon p{
+  width: 350px;
+}

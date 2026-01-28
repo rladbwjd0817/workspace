@@ -1,0 +1,35 @@
+.container{
+  width: 600px;
+  height: 500px;
+  border: 3px solid black;
+  margin: 30px auto;
+}
+
+div{
+  border: 3px solid black;
+}
+
+.header{
+  height: 15%;
+  border-color: aqua;
+}
+
+.item{
+  display: flex;
+  height: 70%;
+}
+
+.item > div:first-child{
+  width: 15%;
+  border-color: blue;
+}
+
+.item> div:last-child{
+  width: 85%;
+  border-color: chartreuse;
+}
+
+.container > div:last-child{
+  height: 15%;
+  border-color: blueviolet;
+}

@@ -1,0 +1,103 @@
+body{
+  width: 1200px;
+  
+}
+.container{
+ margin: 0px;
+}
+
+.head-div{
+  background-color: #0c51a6;
+  color: white;
+  display: flex;
+  gap: 55%;
+  padding: 20px 9px;
+}
+
+.head-div > span:first-child{
+  font-size: 1.5rem;
+  font-weight: bold;
+  width: 200px;
+  text-align: center;
+  padding-top: 5px;
+}
+
+.name-div{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: (1, 10px);
+  background-color: #0a4288;
+  width: 600px;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.main{
+ position: relative;
+}
+
+.intro{
+  background-color: rgba(0, 0, 0, 0.6);
+  opacity: 0.6;
+  color: white;
+  width: 400px;
+  text-align: center;
+  padding: 25px;
+  position: absolute;
+  top: 35%;
+  left: 35%;
+}
+
+.info{
+  display: flex;
+  width: 100%;
+}
+
+.info > div:first-child{
+  background-color: #e5f1ff;
+  padding: 0px 10px;
+  line-height: 30px;
+}
+
+.notice{
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  line-height: 45px;
+}
+
+.banner{
+  position: relative;
+}
+
+.banner > div{
+  position: absolute;
+  top: 35%;
+  left: 13%;
+  text-align: center;
+}
+
+.banner button{
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100px;
+  height: 35px;
+  border-radius: 15px;
+  margin-top: 10px;
+  color: white;
+  border: none;
+}
+
+.name{
+  background-color: #e7e7e7;
+  display: flex;
+  gap: 20%;
+  padding: 20px 9px;
+}
+
+.name > span:first-child{
+  font-size: 1.5rem;
+  font-weight: bold;
+  width: 150px;
+  padding-top: 5px;
+  color: gray;
+}

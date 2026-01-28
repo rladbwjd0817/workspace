@@ -1,0 +1,36 @@
+/* 테이블이 하나이면 굳이 div안써도 됨 */
+.container{
+  width: 500px;
+  margin: 100px auto;
+  border: 1px solid lightgray;
+}
+
+table{
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+}
+
+table > thead > tr{
+  border-top: 2px solid black;
+  border-bottom: 1px solid lightgray;
+}
+
+table > tbody > tr{
+  border-bottom: 1px solid lightgray;
+}
+table > td{
+  padding: 8px;
+}
+
+table > tbody > tr > :nth-child(3){
+  text-align: left;
+}
+
+table > tbody > tr:nth-child(even){
+  background-color: rgb(252, 205, 212);
+}
+
+td{
+  
+}

@@ -1,0 +1,47 @@
+body{
+  background-color: #e0ffff;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container{
+  border: 1px solid black;
+  width: 300px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.img-div{
+ position: relative;
+ width: 500px;
+}
+
+.content{
+  padding: 7px;
+}
+
+.content > b{
+  font-size: 30px;
+  color: orange;
+}
+
+.heart-span{
+  position: absolute;
+  top: 1px;
+  right: 210px;
+}
+
+hr{
+  color: lightslategray;
+}
+
+.bed{
+  display: flex;
+  justify-content: space-around;
+}
+.info{
+  border-radius: 50%;
+}
+
