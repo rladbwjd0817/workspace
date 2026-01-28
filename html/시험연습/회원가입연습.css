@@ -1,0 +1,121 @@
+.container{
+  border: none;
+  width: 100%;
+  padding: 5px 10px 10px 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+/* 표 클래스들(큰 틀)*/
+.register > table {
+  border:3px solid lightgray;
+  width: 100%;
+}
+
+.info > table {
+  border: 3px solid lightgray;
+  width: 100%;
+}
+
+.addi-info > table {
+  border: 3px solid lightgray;
+  width: 100%;
+}
+
+tr, td {
+  border-left: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+}
+
+/* 제목들 */
+h3 {
+  padding: 20px 0px;
+}
+
+/* 첫  번째 열 회색칸 */
+.backcolor{
+  background-color: rgb(241, 239, 239);
+  padding:10px 15px;
+  width: 200px;
+  position: relative;
+}
+
+/* *클래스 */
+.asterisk{
+  color: red;
+  position: absolute;
+  padding-left: 4px;
+  transform: translateY(10%);
+}
+
+/* 기본정보 제목 */
+.info > div:first-child{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* class info 안에 있는 자손 input 태그  중 type이 text인 태그만 */
+.info input[type="text"]{ 
+  width: 200px;
+  height: 28px;
+  border: 2px solid lightgray;
+  margin: 0px 10px;
+}
+
+/* 비밀번호 */
+.info input[type="password"]{ 
+  width: 200px;
+  height: 28px;
+  border: 2px solid lightgray;
+  margin: 0px 10px;
+}
+
+/* 우편번호 */
+.info button{ 
+  padding: 4px 15px;
+  background-color: white;
+  border: 2px solid lightgray;
+  border-radius: 4px;
+}
+
+/* 주소 p 태그 클래스 */
+.info .addr-p [type="text"]{
+  width: 350px;
+  margin: 4px 5px;
+}
+
+/* 기본정보클래스 info 안 자손 p 태그만 */
+.info p{
+  margin-left: 5px;
+}
+
+/* 전화 > select태그 */
+.selectArea{
+  width: 80px;
+  height: 28px;
+  margin: 0px 10px;
+  border: 2px solid lightgray;
+}
+
+/* 추가정보 생년월일 클래스들 */
+.birth-td > :first-child{
+  width: 100px;
+  height: 28px;
+  margin: 0px 10px;
+  border: 2px solid lightgray;
+}
+
+.birth-td > :nth-child(2){
+  width: 70px;
+  height: 28px;
+  border: 2px solid lightgray;
+}
+
+.birth-td > :nth-child(3){
+  width: 70px;
+  height: 28px;
+  border: 2px solid lightgray;
+}
+

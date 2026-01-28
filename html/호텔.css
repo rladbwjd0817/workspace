@@ -1,0 +1,102 @@
+/* 폰트 import(가져오기) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* 폰트 적용하기 */
+*{
+  font-family: "Montserrat", sans-serif;
+}
+
+body{
+  background-color: rgb(231, 253, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container{
+  width: 360px;
+  background-color: white;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.img-div{
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.img-div > span{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+}
+
+.img-div > img{
+  width: 100%;
+  height: 200px;
+  transition: all 0.8s;
+
+}
+
+.img-div>img:hover{
+  scale: 1.1;
+}
+
+.detail-div{
+  padding: 12px;
+}
+
+.detail-1 > p:first-child{
+  font-weight: bold;
+}
+
+.detail-1> p:nth-child(2){
+  font-weight: 600;
+  font-size: 2rem;
+  color: orange;
+  margin: 5px 0px;
+}
+
+.detail-1> p:nth-child(3){
+  color: grey;
+}
+
+.detail-2{
+  display: flex;
+  justify-content: space-evenly;
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+  padding: 20px 0px;
+  margin: 12px 0px;
+}
+
+.detail-3 img{
+  width: 45px;
+  border-radius: 50%;
+  border: 1px solid lightslategrey;
+}
+
+.info-div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.info-div > div{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn{
+  background-color: lightgreen;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  padding: 6px 20px;
+}

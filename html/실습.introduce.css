@@ -1,0 +1,70 @@
+body{
+  background-color: #778899;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container{
+  width: 100vh;
+  border: 1px solid black;
+  background-color: white;
+  padding: 12px 24px;
+  margin: 10px 5px;
+}
+
+.text{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-div > :nth-child(1){
+  width: 100px;
+  border: none;
+  background-color: #ffb6c1;
+  border-radius: 10px;
+  padding: 7px 10px;
+  color: white;
+}
+
+.grid{
+  position: relative;
+}
+
+.grid > img{
+  width: 200px;
+  height: 300px;
+}
+
+.grid:hover > .info{
+}
+
+.grid-div{
+  display: grid;
+  grid-template-columns: repeat(4, 2fr);
+  grid-template-rows: repeat(2, 2fr);
+  gap: 5px;
+}
+
+.info{
+  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  transition: all;
+  padding: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.info > span{
+  font-size: 0.8rem;
+}
+.info :hover{
+  
+}
