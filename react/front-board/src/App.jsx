@@ -12,20 +12,29 @@ function App() {
     <>
       <Header />
 
-      <Routes>
+      {/* 모든 페이지가 보여질 영역 */}
+      <div style={{
+        width : '50%',
+        margin : '30px auto' 
+      }}>
+        <Routes>
          {/* 게시글 목록 페이지 - 제일 처음 화면*/}
          {/* localhost:5173 */}
-        <Route path='' element={ <BoardList />} />
+          <Route path='' element={ <BoardList />} />
            
-        {/* 게시글 상세조회 페이지 */}
-        <Route path='/detail' element={ <BoardSelect />} />
+          {/* 게시글 상세조회 페이지 */}
+          <Route path='/detail' element={ <BoardSelect />} />
 
-        {/* 게시글 등록 페이지 localhost:5173/:reg*/}
-        <Route path='/reg' element={ <Regform />} />
+          {/* 게시글 등록 페이지 localhost:5173/:reg*/}
+          <Route path='/reg' element={ <Regform />} />
 
-        {/* 게시글 수정 페이지 */}
-        <Route path='put' element={ <PutBoard />} />
-      </Routes>
+          {/* 게시글 수정 페이지 */}
+          <Route path='/put' element={ <PutBoard />} />
+        </Routes>  
+      </div>
+
+      
+      
     </>
   )
 }

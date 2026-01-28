@@ -1,3 +1,17 @@
+@font-face {
+    font-family: 'Paperozi';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-6SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'NanumSquareRound';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
+
 .container{
   
 }
@@ -5,14 +19,13 @@
 .search{
   display: flex;
   justify-content: end;
-  margin: 10px;
   gap: 5px;
-  
 }
 
 .search > select{
   width: 100px;
   border-radius: 5px;
+  font-family: 'Paperozi';
 }
 
 .search > input{
@@ -20,6 +33,7 @@
 }
 
 .search > button{
+  font-family: 'Paperozi';
   border-radius: 5px;
   background-color: rgb(70, 70, 70);
   border: none;
@@ -28,12 +42,61 @@
   height: 25px;
 }
 
-.table{
-  border: 1px solid black;
-  width: 80%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin: auto;
+.list_div{
+  margin: 20px 0px;
+
 }
+
+.list_table{
+  text-align: center;
+  width: 100%;
+}
+
+.list_table td{
+  padding: 8px 12px;
+}
+
+.list_table > thead > tr {
+  border-top: 2px solid rgb(65, 65, 65);
+  border-bottom: 1px solid rgb(65, 65, 65);
+  background-color: rgb(88, 88, 88);
+  color: white;
+  font-weight: bold;
+  font-family: 'Paperozi';
+}
+
+.list_table > tbody > tr {
+  border-bottom: 1px solid rgb(145, 145, 145);
+  font-family: 'NanumSquareRound';
+}
+
+.list_table > tbody > tr:nth-child(even){
+  background-color: rgba(200, 200, 200, 0.1);
+}
+
+.list_table > tbody > tr :hover {
+  background-color: rgba(200, 200, 200, 0.2);
+}
+
+.list_table > tbody > tr > td:nth-child(2){
+  text-align: center;
+}
+
+.btn_div{
+  text-align: center;
+}
+
+.btn_div > button{
+  background-color: rgb(70, 70, 70);
+  width: 90px;
+  height: 30px;
+  border: none;
+  border-radius: 2px;
+  font-family: 'NanumSquareRound';
+  font-size: 0.9rem;
+  color: white;
+  cursor: pointer;
+}
+
+
 
