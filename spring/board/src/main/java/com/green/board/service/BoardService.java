@@ -33,5 +33,16 @@ public class BoardService { //2-1 코드
     return list;
   }
 
+//  게시글 등록 기능
+  public void postBoard(BoardDTO boardDTO){
+    boardMapper.insertBoard(boardDTO);
+  }
+
+//  게시글 1개 상세 조회 기능
+  public BoardDTO oneBoardData(int boardNum){
+//    BoardDTO oneData = boardMapper.oneBoardData(boardNum);
+//    return oneData;
+    return boardMapper.oneBoardData(boardNum);
+  }
 
 }

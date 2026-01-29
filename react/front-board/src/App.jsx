@@ -5,6 +5,7 @@ import BoardList from './pages/BoardList'
 import Regform from './pages/Regform'
 import BoardSelect from './pages/BoardSelect'
 import PutBoard from './pages/PutBoard'
+import BoardDetail from './pages/BoardDetail'
 
 function App() {
 
@@ -20,10 +21,10 @@ function App() {
         <Routes>
          {/* 게시글 목록 페이지 - 제일 처음 화면*/}
          {/* localhost:5173 */}
-          <Route path='' element={ <BoardList />} />
+          <Route path='/' element={ <BoardList />} />
            
           {/* 게시글 상세조회 페이지 */}
-          <Route path='/detail' element={ <BoardSelect />} />
+          <Route path='/detail/:boardNum' element={ <BoardDetail />} />
 
           {/* 게시글 등록 페이지 localhost:5173/:reg*/}
           <Route path='/reg' element={ <Regform />} />

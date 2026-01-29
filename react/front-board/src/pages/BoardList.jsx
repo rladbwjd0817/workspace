@@ -7,6 +7,7 @@ import axios from 'axios';
 // 1. 마운트 시 게시글 목록 조회
 // 2. 게시글 목록 조회 axios 작성
 const BoardList = () => {
+
   // 버튼을 눌렀을 때 실행 할 nav 함수생성
   const nav = useNavigate();
 
@@ -44,7 +45,7 @@ const BoardList = () => {
           <colgroup>
             <col width='10%'/>
             <col width='20%'/>
-            <col width='*'/>
+            <col width='20%'/>
             <col width='20%'/>
             <col width='10%'/>
           </colgroup>
@@ -66,12 +67,15 @@ const BoardList = () => {
               boardList.map((board, index) => {
                 return(
                   <tr key={board.boardNum}>
-                    <td></td>
+                    <td>{boardList.length - index}</td>
                     <td>{board.writer}</td>
-                    <td>{board.title}</td>
+                    <td>
+                      <span onClick={e => nav(`/detail/${board.boardNum}`)}>
+                        {board.title}
+                      </span>
+                    </td>
                     <td>{board.createDate}</td>
                     <td>{board.readCnt}</td>
-                    {/* <td>{board.}</td> */}
                   </tr>
                 )
               })

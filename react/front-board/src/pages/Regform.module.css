@@ -13,7 +13,7 @@
 }
 
 .container{
-
+  
 }
 
 .title{
@@ -34,4 +34,25 @@
 .table textarea{
   width: 500px;
   height: 100px;
+}
+
+.table > tr:first-child{
+  font-family: 'NanumSquareRound';
+}
+
+.reg{
+  
+  
+}
+
+.reg > button{
+  background-color: rgb(61, 61, 61);
+  border: none;
+  color: white;
+  width: 100px;
+  height: 25px;
+  border-radius: 7px;
+  margin: 20px 230px;
+  font-size: 1.0rem;
+  font-family: 'NanumSquareRound';
 }

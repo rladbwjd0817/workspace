@@ -35,7 +35,7 @@
 	</select>
 
 	<insert id="insertBoard">
-		INSERT INTO BOARD_BASIC (
+		INSERT INTO BASIC_BOARD (
 			TITLE
 			, WRITER
 			, CONTENT
@@ -46,6 +46,18 @@
 		)
 	</insert>
 
+	<!--조회 : 화면에 보여줄 데이터-->
+	<!--전체 조회-->
+	<select id="oneBoardData" resultMap="board">
+		SELECT BOARD_NUM
+			, CREATE_DATE
+			, WRITER
+			, READ_CNT
+			, TITLE
+			, CONTENT
+		FROM BASIC_BOARD
+		WHERE BOARD_NUM = #{boardNum}
+	</select>
 
 
 
