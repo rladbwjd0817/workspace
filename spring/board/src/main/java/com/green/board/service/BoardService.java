@@ -38,11 +38,35 @@ public class BoardService { //2-1 코드
     boardMapper.insertBoard(boardDTO);
   }
 
-//  게시글 1개 상세 조회 기능
-  public BoardDTO oneBoardData(int boardNum){
+//  게시글 1개 상세 조회 기능 + 조회수 증가
+  public BoardDTO oneBoardData(int boardNum, String type){
 //    BoardDTO oneData = boardMapper.oneBoardData(boardNum);
 //    return oneData;
+//  상세 조회 기능에서만 조회수를 1 증가
+    if (type.equals("get")){
+      boardMapper.updateReadCnt(boardNum);
+    }
+
+//    게시글 상세 정보 조회 쿼리 실행
     return boardMapper.oneBoardData(boardNum);
+
   }
+
+  public int deleteBoardData(int boardNum){
+    return boardMapper.deleteBoardData(boardNum);
+  }
+
+//  게시글 수정 기능
+  public void updateBoard(BoardDTO boardDTO){
+    boardMapper.updateBoard(boardDTO);
+  }
+
+//  게시글 1개 선택시 조회수 1 증가 기능
+//  -> 원칙적으로 조회수 증가 기능은 X,
+//  원래는 게시글 상세 조회 기능만 있음
+//  -> 게시글 상세 조회 쿼리 + 조회수 1증가 쿼리
+//  그래서 Mapper에는 쿼리실행메서드가 2개, 상제조회기능에 조회수 1증가도 포함
+
+
 
 }

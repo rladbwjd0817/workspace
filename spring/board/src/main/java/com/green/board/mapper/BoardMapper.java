@@ -32,6 +32,18 @@ public interface BoardMapper {
 //  게시글 1개 상세 조회 쿼리 실행 메서드
   BoardDTO oneBoardData(int boardNum);
 
+//  게시글 1개 선택 시 조회수 1 증가 쿼리 실행 메서드
+  void updateReadCnt(int boardNum);
+
+//  게시글 상세 정보 페이지에서 삭제 쿼리 실행 메서드
+  int deleteBoardData(int boardNum);
+
+// 게시글 정보 수정 쿼리 실행 메서드
+  void updateBoard(BoardDTO boardDTO);
+
+
+
+
 }
 
 

@@ -4,8 +4,9 @@ import './reset.css'
 import BoardList from './pages/BoardList'
 import Regform from './pages/Regform'
 import BoardSelect from './pages/BoardSelect'
-import PutBoard from './pages/PutBoard'
+
 import BoardDetail from './pages/BoardDetail'
+import UpdateForm from './pages/UpdateForm'
 
 function App() {
 
@@ -30,7 +31,7 @@ function App() {
           <Route path='/reg' element={ <Regform />} />
 
           {/* 게시글 수정 페이지 */}
-          <Route path='/put' element={ <PutBoard />} />
+          <Route path='/update/:boardNum' element={ <UpdateForm />} />
         </Routes>  
       </div>
 

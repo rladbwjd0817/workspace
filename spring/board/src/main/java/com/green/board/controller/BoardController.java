@@ -45,15 +45,41 @@ public class BoardController {
 //  매개변수는 화면에 입력한 데이터를 스프링으로 가지고 올
 //  데이터가 바로 매개변수임!
 
-//  게시글 1개 상세 조회 기능 API
-//  url : (GET) localhost:8080/boards/{boardNum}
-  @GetMapping("/{boardNum}")
-  public BoardDTO getOneData(@PathVariable("boardNum") int boardNum){
+//  게시글 1개 상세 조회 기능 + 조회수 1증가 API
+//  url : (GET) localhost:8080/boards/get/{boardNum} -> 게시글 상세조회
+//  url : (GET) localhost:8080/boards/update/{boardNum} -> 게시글 수정을 하기 위한 조회
+  @GetMapping("/{type}/{boardNum}")
+  public BoardDTO getOneData(@PathVariable("boardNum") int boardNum, @PathVariable("type") String type){
+    System.out.println("이동할 페이지 : " + type);
     System.out.println("상세 조회 할 글 번호 : " + boardNum);
 //    BoardDTO oneData = boardService.oneBoardData(boardNum);
 //    return oneData;
 
-    return boardService.oneBoardData(boardNum);
+    return boardService.oneBoardData(boardNum, type);
+  }
+
+//  게시글 삭제 기능 API
+//  url: (DELETE) localhost:8080/boards/1
+  @DeleteMapping("/{boardNum}")
+  public int deleteBoard(@PathVariable("boardNum") int boardNum){
+    System.out.println("삭제 할 글 번호: " + boardNum);
+    int result = boardService.deleteBoardData(boardNum);
+    return result;
+  }
+
+//  게시글 수정 기능 API
+//  url : (PUT) localhost:8080/boards/2
+  @PutMapping("/{boardNum}")
+  public void updateBoard(@PathVariable("boardNum") int boardNum,
+                          @RequestBody BoardDTO boardDTO){
+
+//  @RequestBody : post, put에서만 씀
+    System.out.println("boardNum = " + boardNum);
+    System.out.println(boardDTO);
+    boardDTO.setBoardNum(boardNum); //boardNum = 7 이라면 boardDTO에 7을 넣어줌
+    boardService.updateBoard(boardDTO);
+
+
   }
 
 
