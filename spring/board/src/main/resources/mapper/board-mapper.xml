@@ -23,6 +23,13 @@
 	<!-- resultType : 실행 결과 데이터가 자바에서 제공하는 자료형으로 받을 수 있을 때 사용 -->
 	<!-- resultMap : 실행 결과 데이터를 우리가 만든 자료형(CLASS, BoardDTO)으로 받을 때-->
 
+	<!--#{}로 작성된 빈 값은 Mapper Interface에서 선언한 추상메서드의 매개변수로 채워짐-->
+	<!--case1. 매개변수로 DTO. 객체로 전달되면 #{} 안에 작성된 변수의 getter를 호출하여 데이터를 채워줌.-->
+	<!--case2. 매개변수로 int, String이 전달되면, getter가 없어서 getter 호출을 하지 않기에
+	변수명 자유롭게 작성 가능, 해석할 때 #{} 변수명으로 비교하는 것이 아니라 자료형 int, String으로 비교하기에 자료형이 중요함.-->
+	<!--case2. 단순히 정수 데이터 하나, 문자열 데이터 하나만 채워주면 장땡임-->
+
+
 	<!--resultMap="board" 는 위의 resultMap id="board"와 일치시킴 -->
 	<select id="selectBoardList" resultMap="board">
 		SELECT BOARD_NUM
@@ -30,7 +37,17 @@
 			, WRITER
 			, READ_CNT
 			, CREATE_DATE
-		  FROM BASIC_BOARD
+		FROM BASIC_BOARD
+		<!-- test 안의 내용이 참일 때만 실행
+		 test가 조건임, 그리고 자바문법으로 사용하되 and, or로 사용
+		 test를 '' 로 감싸서 사용가능하고, equals("")괄호 안에는 "" 사용-->
+		<!-- test 안에 작성한 변수는 매개변수로 전달된 객체의 getter를 호출해서 해석-->
+		<!-- #{} -> ''에 감싸짐. 일반적인 변수에서 사용-->
+		<!-- ${} -> '' 없음! 컬럼명이 변수일 때 사용
+			무분별하게 사용하면 해킹위험도 높아짐!-->
+		<if test='!searchValue.equals("")'>
+			WHERE UPPER(${searchKeyword}) LIKE CONCAT('%', UPPER(#{searchValue}), '%')
+		</if>
 		 ORDER BY CREATE_DATE DESC
 	</select>
 
@@ -40,7 +57,8 @@
 			, WRITER
 			, CONTENT
 		) VALUES(
-			#{title}
+			#{title} <!-- boardDTO.getTitle(); DTO 클래스의 멤버변수 getter를 불러와야 하니
+					멤버변수명과 돌일하게 작성-->
 			,#{writer}
 			,#{content}
 		)
@@ -81,6 +99,7 @@
 			,CONTENT = #{content}
 		WHERE BOARD_NUM = #{boardNum}
 	</update>
+
 
 
 

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
+import ReplyInfo from '../components/ReplyInfo';
 
 const BoardDetail = () => {
   // url parameter 데이터 받기
@@ -94,6 +95,14 @@ const BoardDetail = () => {
           }}
         >삭제</button>
       </div>
+
+      {/* 글 번호를 ReplyInfo에 전달 */}
+      <ReplyInfo boardNum={params.boardNum}/>
+
+
+
+
+
     </div>
   )
 }

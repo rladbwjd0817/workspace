@@ -1,6 +1,7 @@
 package com.green.board.mapper;
 
 import com.green.board.dto.BoardDTO;
+import com.green.board.dto.SearchDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -24,7 +25,7 @@ import java.util.List;
 public interface BoardMapper {
 
 //  게시글 목록조회 쿼리 실행 메서드
-  List<BoardDTO> selectBoardList();
+  List<BoardDTO> selectBoardList(SearchDTO searchDTO);
 
 //  게시글 등록 쿼리 실행 메서드
   void insertBoard(BoardDTO boardDTO);
@@ -40,6 +41,8 @@ public interface BoardMapper {
 
 // 게시글 정보 수정 쿼리 실행 메서드
   void updateBoard(BoardDTO boardDTO);
+
+
 
 
 

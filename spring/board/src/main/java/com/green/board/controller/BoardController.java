@@ -1,10 +1,12 @@
 package com.green.board.controller;
 
 import com.green.board.dto.BoardDTO;
+import com.green.board.dto.SearchDTO;
 import com.green.board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // 해당 파일은 요청에 대한 응답기능을 구현(API)
@@ -29,9 +31,11 @@ public class BoardController {
 // 게시글 목록 조회 기능 API
 //  url : (GET) localhost:8080/boards
   @GetMapping("")
-  public List<BoardDTO> getBoardList(){
-     List<BoardDTO> list = boardService.getList();
+  public List<BoardDTO> getBoardList(SearchDTO searchDTO){
+    System.out.println(searchDTO);
+     List<BoardDTO> list = boardService.getList(searchDTO);
      return list;
+
   }
 
 //  게시글 등록 기능 API

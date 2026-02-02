@@ -1,6 +1,7 @@
 package com.green.board.service;
 
 import com.green.board.dto.BoardDTO;
+import com.green.board.dto.SearchDTO;
 import com.green.board.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,8 +29,8 @@ public class BoardService { //2-1 코드
   }
 
 //  게시글 목록 조회 기능
-  public List<BoardDTO> getList(){
-    List<BoardDTO> list = boardMapper.selectBoardList(); //쿼리실행결과 전체 데이터가 다 들어있음!
+  public List<BoardDTO> getList(SearchDTO searchDTO){
+    List<BoardDTO> list = boardMapper.selectBoardList(searchDTO); //쿼리실행결과 전체 데이터가 다 들어있음!
     return list;
   }
 
