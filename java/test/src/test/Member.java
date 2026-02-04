@@ -49,14 +49,12 @@ public class Member {
   public boolean isLogin(String id, String pw){
 //    id = "java", pw = 1234
 
-    boolean login = true;
-    if (id.equals(id) == login && pw.equals(pw) == login){
-      System.out.println("로그인 가능");
+    if (this.id.equals(id) && this.pw.equals(pw)){
+      return true;
 
     } else {
-      System.out.println("로그인 불가능");
+      return false;
     }
-    return login;
   }
 
 

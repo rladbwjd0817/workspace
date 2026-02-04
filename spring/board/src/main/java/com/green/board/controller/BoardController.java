@@ -3,7 +3,10 @@ package com.green.board.controller;
 import com.green.board.dto.BoardDTO;
 import com.green.board.dto.SearchDTO;
 import com.green.board.service.BoardService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -20,7 +23,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/boards")
-
+// @Slf4j :
+@Slf4j
 public class BoardController {
   private BoardService boardService; //2-1 코드
 
@@ -31,19 +35,41 @@ public class BoardController {
 // 게시글 목록 조회 기능 API
 //  url : (GET) localhost:8080/boards
   @GetMapping("")
-  public List<BoardDTO> getBoardList(SearchDTO searchDTO){
-    System.out.println(searchDTO);
-     List<BoardDTO> list = boardService.getList(searchDTO);
-     return list;
+  public ResponseEntity<?> getBoardList(SearchDTO searchDTO){
+//    try 순차적으로 실행 -> 오류나면 그 즉시 try멈추고 바로 catch문 순차적으로 실행
+    try {
+//      System.out.println(searchDTO);
+      log.info("게시글 목록 조회 기능 실행 중 입니당!");
+      List<BoardDTO> list = boardService.getList(searchDTO);
+      return ResponseEntity.status(HttpStatus.OK).body(list);
+    }catch(Exception e){
+      //  react의 axios의 catch와 비슷함! => 오류났을 때 실행
+//      오류 나자마자 밑엔 실행 안하고 바로 catch 실행!!
+      log.error("!!!게시글 목록 조회 중 오류 발생!!!");
+//      printStackTrace() : 오류나는 이유 및 발생 위치 알려줌!
+      e.printStackTrace();
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("오류났어요!!");
+    }
 
   }
 
 //  게시글 등록 기능 API
 //  url: (POST) localhost:8080/boards
   @PostMapping("")
-  public void postBoard(@RequestBody BoardDTO boardDTO){
-    System.out.println(boardDTO);
-    boardService.postBoard(boardDTO);
+  public ResponseEntity<?> postBoard(@RequestBody BoardDTO boardDTO){
+    try {
+      System.out.println(boardDTO);
+      int result= boardService.postBoard(boardDTO);
+//      등록일 땐 통상적으로 created를 사용
+      return ResponseEntity.status(HttpStatus.CREATED).body(result);
+    }catch(Exception e){
+      log.error("게시글 등록 중 오류");
+      e.fillInStackTrace();
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+
+
+
   }
 //  boardDTO -> 우리가 화면에 입력한 데이터가 다 있어야 함.
 //  매개변수는 화면에 입력한 데이터를 스프링으로 가지고 올
@@ -82,8 +108,6 @@ public class BoardController {
     System.out.println(boardDTO);
     boardDTO.setBoardNum(boardNum); //boardNum = 7 이라면 boardDTO에 7을 넣어줌
     boardService.updateBoard(boardDTO);
-
-
   }
 
 

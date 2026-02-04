@@ -29,6 +29,7 @@ const Regform = () => {
     .then(response => {
       console.log(response.data);
       
+      
     })
     .catch(error => console.log(error));
   }
@@ -99,7 +100,7 @@ const Regform = () => {
             type='button'
             onClick={e => {
               newBoard();
-              nav('/');
+              
             }}
           >글등록</button>
         </div>

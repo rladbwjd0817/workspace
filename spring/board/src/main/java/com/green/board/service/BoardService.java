@@ -35,8 +35,9 @@ public class BoardService { //2-1 코드
   }
 
 //  게시글 등록 기능
-  public void postBoard(BoardDTO boardDTO){
-    boardMapper.insertBoard(boardDTO);
+  public int postBoard(BoardDTO boardDTO){
+   int result = boardMapper.insertBoard(boardDTO);
+   return result;
   }
 
 //  게시글 1개 상세 조회 기능 + 조회수 증가

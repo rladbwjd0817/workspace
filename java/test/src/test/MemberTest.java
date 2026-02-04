@@ -7,7 +7,9 @@ public class MemberTest {
     System.out.println(member);
 
 //    isLogin 메서드 호출
-    member.isLogin("java", "1234");
-    member.isLogin("java", "1111");
+    if (member.isLogin("java", "1234")){
+      System.out.println("로그인 성공");
+    }
+
   }
 }

@@ -28,7 +28,7 @@ public interface BoardMapper {
   List<BoardDTO> selectBoardList(SearchDTO searchDTO);
 
 //  게시글 등록 쿼리 실행 메서드
-  void insertBoard(BoardDTO boardDTO);
+  int insertBoard(BoardDTO boardDTO);
 
 //  게시글 1개 상세 조회 쿼리 실행 메서드
   BoardDTO oneBoardData(int boardNum);

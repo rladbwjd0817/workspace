@@ -32,10 +32,15 @@ const BoardList = () => {
   const getboardList = () => {
     axios.get('http://localhost:8080/boards', {params: searchData})
     .then(response => {
-      console.log(response.data);
+      // console.log(response);
+      // console.log(response.data);
       setBoardList(response.data);
     })
-    .catch(error => console.log(error));
+    .catch(error => {
+      console.log('오류발생!')
+      // 응답 정보 (오류 난 이유) 다 들어있음!
+      console.log(error.response);
+    });
   }
 
   // 마운트 시(리렌더링땐 X) 게시글 목록 조회
