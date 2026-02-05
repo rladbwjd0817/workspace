@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import BoardList from '../pages/BoardList';
 import { useParams } from 'react-router-dom';
+import { delReply, getList, save } from '../api/replyApi';
 
 const ReplyInfo = ({boardNum}) => {
   // console.log(props); -> 객체로 출력 , {boardNum : 3} => boardNum - key, 3 - value
@@ -13,24 +14,12 @@ const ReplyInfo = ({boardNum}) => {
   const [replyList, setReplyList] = useState([]);
 
   // 마운트 시 댓글 목록 조회
-  useEffect(() => {
-    // axios.get(`http://localhost:8080/replies/${boardNum}`)
-    // .then(response => {
-    //   console.log(response.data)
-    //   setReplyList(response.data)
-    // })
-    // .catch(error => console.log(error));
-    getReplyList();
-  }, [])
+  useEffect(() => {getReplyList()}, [])
 
   // 댓글 목록 조회 함수
-  const getReplyList = () => {
-    axios.get(`http://localhost:8080/replies/${boardNum}`)
-    .then(response => {
-      console.log(response.data)
-      setReplyList(response.data)
-    })
-    .catch(error => console.log(error));
+  const getReplyList = async () => {
+    const response = await getList(boardNum);
+    setReplyList(response.data);
   }
 
   // Spring으로 전달할 데이터를 저장하는 변수 생성
@@ -52,7 +41,8 @@ const ReplyInfo = ({boardNum}) => {
 
  
   // 댓글 등록 API 호출
-  const regReply = () => {
+  const regReply = async () => {
+
     // 작성자랑 내용이 다 기입되었을 때 실행되기
     // 작성자 혹은 댓글 내용이 입력되지 않았으면
     if(writeReply.writer === '' || writeReply.content === ''){
@@ -60,36 +50,29 @@ const ReplyInfo = ({boardNum}) => {
       return; //빈 return은 조건이 만족하지 않으면 바로 함수 종료
     }
 
-    axios.post('http://localhost:8080/replies', writeReply)
-    .then(response => {
-      console.log(response.data);
-      // 댓글 목록 조회
-      getReplyList();
-      // input태그 초기화
-      setWriteReply({
-        ...writeReply,
-        writer : '',
-        content : ''
-      })
-    })
-    .catch(error => console.log(error));
+    // 댓글 등록
+    await save(writeReply);
+    getReplyList();
+    // input태그 초기화
+    setWriteReply({
+      ...writeReply,
+      content : '',
+      writer : ''
+    });
+
   }
 
 
   // 삭제버튼 눌렀을 때 실행 할 함수
-  const deleteData = (replyNum) => {
+  const deleteData = async (replyNum) => {
     const result = confirm('삭제하실?');
 
     if(result){
-      axios.delete(`http://localhost:8080/replies/${replyNum}`)
-      .then(response => {
-        console.log(response.data);
-        getReplyList();
-      })
-      .catch(error => console.log(error));
+      // 댓글 삭제
+      await delReply(replyNum);
+      // 댓글 목록 조회
+      getReplyList();
     }
-
-    
   }
 
   return (

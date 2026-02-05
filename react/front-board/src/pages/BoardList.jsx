@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './BoardList.module.css'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
+import { getList } from '../api/boardApi';
 
 // 목표 : 컴포넌트가 마운트 될 때 게시글 목록을 spring에서 조회한 후 화면에 띄워준다!
 // 1. 마운트 시 게시글 목록 조회
@@ -22,25 +23,13 @@ const BoardList = () => {
   });
 
   // 입력값 저장 함수
-  const handleSearchData = (e) => {
-    setSearchData({
-      ...searchData,
-      [e.target.name] : e.target.value
-    })}
+  const handleSearchData = e => setSearchData(prev => ({ ...prev, [e.target.name] : e.target.value}))
 
+    
   // 게시글 목록 조회 함수
-  const getboardList = () => {
-    axios.get('http://localhost:8080/boards', {params: searchData})
-    .then(response => {
-      // console.log(response);
-      // console.log(response.data);
-      setBoardList(response.data);
-    })
-    .catch(error => {
-      console.log('오류발생!')
-      // 응답 정보 (오류 난 이유) 다 들어있음!
-      console.log(error.response);
-    });
+  const getboardList = async () => {
+    const response = await getList(searchData);
+    setBoardList(response.data);
   }
 
   // 마운트 시(리렌더링땐 X) 게시글 목록 조회

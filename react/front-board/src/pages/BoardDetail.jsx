@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import ReplyInfo from '../components/ReplyInfo';
+import { delBoard } from '../api/boardApi';
 
 const BoardDetail = () => {
   // url parameter 데이터 받기
@@ -26,7 +27,7 @@ const BoardDetail = () => {
   }, [])
 
   // 삭제버튼 클릭 시 spring에게 삭제 실행을 요청 할 함수
-  const deleteOneData = () => {
+  const deleteOneData = async () => {
     // 삭제버튼 누르면 한번 더 확인하는 기능 -> confirm();
     // 확인, 취소 버튼은 리턴해주는 데이터가 다름!
     // 확인 -> true, 취소 -> false
@@ -34,16 +35,13 @@ const BoardDetail = () => {
   
     // 확인 눌렀을 경우
     if(result){
-      axios.delete(`http://localhost:8080/boards/${params.boardNum}`)
-      .then(response => {
-        if(response.data === 1){
-          alert('삭제되었습니다.')
-        } 
-        else{
-          alert('예기치 못한 오류가 발생했습니다.')
-        }
-      })
-      .catch(error => console.log(error));
+      const response =  await delBoard(params.boardNum);
+      if(response.data === 1){
+        alert('삭제되었습니다.')
+      } 
+      else{
+        alert('예기치 못한 오류가 발생했습니다.')
+      }
     }
   }
 

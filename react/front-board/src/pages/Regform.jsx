@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styles from './Regform.module.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { saveOne } from '../api/boardApi';
 
 const Regform = () => {
   // 게시글 작성 시 저장 할 state 변수 생성
@@ -19,23 +20,21 @@ const Regform = () => {
   const newBoard = () => {
     // 제목과 작성자 입력 여부를 확인
     // 제목과 작성자를 입력하지 않으면 함수 종료
+    
+
+    const response = saveOne(postBoard);
     if(postBoard.title === '' ||  postBoard.writer === ''){
-      alert('제목과 작성자는 필수 입력입니다.');
-      // 리턴데이터 없다 -> 실행 시 함수 종료!
-      return; 
+      alert('제목과 작성자는 필수 입력입니다.')
     }
 
-    axios.post('http://localhost:8080/boards', postBoard)
-    .then(response => {
-      console.log(response.data);
-      
-      
-    })
-    .catch(error => console.log(error));
+    
   }
 
   // 새로운 내용을 등록할 때 저장할 handle함수생성
   const handleNewData = (e) => {
+    // 함수형 업데이트로 수정
+
+
     setPostBoard({
       ...postBoard,
       [e.target.name] : e.target.value

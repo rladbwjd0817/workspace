@@ -7,6 +7,10 @@ import BoardSelect from './pages/BoardSelect'
 
 import BoardDetail from './pages/BoardDetail'
 import UpdateForm from './pages/UpdateForm'
+import UseState1 from './study/UseState1'
+import UseState2 from './study/UseState2'
+import Axios1 from './study/Axios1'
+import Axios2 from './study/Axios2'
 
 function App() {
 
@@ -38,6 +42,25 @@ function App() {
       
       
     </>
+
+    // <>
+
+    //   <Header />
+    //   <div
+    //   style={{
+    //     width : '50%',
+    //     margin : '30px auto' 
+    //   }}>
+    //     {/* 학습용 컴포넌트 */}
+    //     {/* <UseState1 /> */}
+    //     {/* <UseState2 /> */}
+    //     {/* <Axios1 /> */}
+    //     {/* <Axios2 /> */}
+        
+    //   </div>
+
+
+    // </>
   )
 }
 
