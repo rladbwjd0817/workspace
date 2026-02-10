@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<!-- namespace에는 xml파일과 연결할 Mapper interface 파일명을 패키지를 포함하여 적어주세요 -->
+<mapper namespace="com.green.item_backend.mapper.ItemMapper">
+    <resultMap id="item" type="com.green.item_backend.dto.ItemDTO">
+        <id column="ITEM_NO" property="itemNo"/>
+        <result column="ITEM_NAME" property="itemName"/>
+        <result column="ITEM_PRICE" property="itemPrice"/>
+        <result column="REGNAME" property="regName"/>
+        <result column="ITEM_INTRO" property="itemIntro"/>
+        <result column="REGDATE" property="regDate"/>
+    </resultMap>
+
+    <!--상품목록을 조회할 쿼리-->
+    <select id="allItemList" resultMap="item">
+        SELECT ITEM_NO
+            , ITEM_NAME
+            , ITEM_PRICE
+            , REGNAME
+        FROM ITEM_INFO
+    </select>
+
+    <!--상품등록 쿼리-->
+    <insert id="regItem">
+        INSERT INTO ITEM_INFO (
+            ITEM_NAME
+            , ITEM_PRICE
+            , REGNAME
+            , ITEM_INTRO
+        ) VALUES(
+            #{itemName}
+            ,#{itemPrice}
+            ,#{regName}
+            ,#{itemIntro}
+        )
+    </insert>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
