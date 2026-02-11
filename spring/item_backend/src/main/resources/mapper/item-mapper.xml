@@ -19,7 +19,8 @@
             , ITEM_NAME
             , ITEM_PRICE
             , REGNAME
-        FROM ITEM_INFO
+         FROM ITEM_INFO
+        ORDER BY ITEM_NO DESC
     </select>
 
     <!--상품등록 쿼리-->

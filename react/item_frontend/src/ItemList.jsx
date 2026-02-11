@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const ItemList = () => {
   // 상품 등록 페이지로 이동할 useNavigate 생성
-  // const nav = useNavigate();
+  const nav = useNavigate();
 
   // 조회한 상품 목록을 저장할 state 변수
   const [itemList, setItemList] = useState([]);
@@ -55,7 +55,7 @@ const ItemList = () => {
               itemList.map((item, index) => {
                 return(
                   <tr key={index}>
-                    <td>{cnt}</td>
+                    <td>{item.itemNo}</td>
                     <td>{item.itemName}</td>
                     <td>{item.itemPrice}</td>
                     <td>{item.regName}</td>
@@ -71,7 +71,7 @@ const ItemList = () => {
         {/* 등록 버튼 */}
         <button 
           type='button'
-          onClick={e => {}}
+          onClick={e => {nav("/reg")}}
         >상품등록</button>
       </div>
     </div>

@@ -2,17 +2,15 @@ package com.green.item_backend.service;
 
 import com.green.item_backend.dto.ItemDTO;
 import com.green.item_backend.mapper.ItemMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ItemService {
-  private ItemMapper itemMapper;
-
-  public ItemService(ItemMapper itemMapper){
-    this.itemMapper = itemMapper;
-  }
+  private final ItemMapper itemMapper;
 
 //  상품 목록 조회 기능 실행 메서드
   public List<ItemDTO> allItemList(){

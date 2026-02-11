@@ -1,14 +1,17 @@
 
-import ItemForm from "./ItemForm"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 import ItemList from "./ItemList"
+import ItemForm from "./ItemForm.jsx"
 
 function App() {
   
 
   return (
     <>
-      {/* <ItemList /> */}
-      <ItemForm />
+      <Routes >
+        <Route path="" element={<ItemList />}/>
+        <Route path="/reg" element={<ItemForm />}/>
+      </Routes>
     </>
   )
 }
