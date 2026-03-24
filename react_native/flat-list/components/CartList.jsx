@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
-import { dummy_data } from "../data/dummy";
 import CartItem from "./CartItem";
 
-export const CartList = () => {
-  const [cartList, setCartList] = useState(dummy_data);
+export const CartList = ({cartList}) => {
+  
 
   return (
     <View style={styles.listContainer}>
