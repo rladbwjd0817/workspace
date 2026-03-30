@@ -1,5 +1,7 @@
 package com.green.security.config;
 
+import com.green.security.jwt.JwtConfirmFilter;
+import com.green.security.jwt.JwtUtil;
 import com.green.security.jwt.LoginFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -24,8 +26,12 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration // 객체 생성 + 이 클래스는 설정내용을 작성된 파일임을 인지시킴
 @EnableWebSecurity // 해당 파일이 security 설정 파일이며, security 설정을 활성화 시키겠다는 의미!
+@RequiredArgsConstructor
 
+// Controller 각 메서드 위에 어노테이션으로 인가 관리를 할 수 있게 세팅하는 어노테이션임!
+@EnableMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfig {
+  private final JwtUtil jwtUtil;
 
   // 인증 및 인가 설정을 작성하는 메서드
   // 해당 메서드는 리턴타입과 매개변수는 정해져 있음!
@@ -54,7 +60,10 @@ public class SecurityConfig {
                     auth.anyRequest().permitAll() // 인증 및 인가를 받지 않아도 모든 곳에 접근 가능!!!
             );
     // 기존 로그인 처리를 담당하는 UsernamePasswordAuthenticationFilter를 우리가 만든 LoginFilter클래스로 대체
-    http.addFilterAt(new LoginFilter(authenticationManager), UsernamePasswordAuthenticationFilter.class);
+    http.addFilterAt(new LoginFilter(authenticationManager, jwtUtil), UsernamePasswordAuthenticationFilter.class);
+
+//    로그인 검증 필터 전에 토큰 유무를 판단하는 필터를 추가
+    http.addFilterBefore(new JwtConfirmFilter(jwtUtil), LoginFilter.class);
 
     return http.build();
   }

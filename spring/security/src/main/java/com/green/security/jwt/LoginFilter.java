@@ -8,15 +8,19 @@ import jakarta.servlet.ServletInputStream;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.util.StreamUtils;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Collection;
+import java.util.Iterator;
 
 public class LoginFilter extends UsernamePasswordAuthenticationFilter {
   /* 아주 중요한 객체!
@@ -24,10 +28,12 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
   * 로그인 처리하는 기능있는 애 : AuthenticationManager
   * */
   private final AuthenticationManager authenticationManager;
+  private final JwtUtil jwtUtil;
 
   // 생성자 의존성 주입 방식으로 멤버변수 authenticationManager를 생성
-  public LoginFilter(AuthenticationManager authenticationManager){
+  public LoginFilter(AuthenticationManager authenticationManager, JwtUtil jwtUtil){
     this.authenticationManager = authenticationManager;
+    this.jwtUtil = jwtUtil;
 
     // 로그인 요청 url 변경
     setFilterProcessesUrl("/member/login");
@@ -98,12 +104,33 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
   @Override
   protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
     System.out.println("로그인 검증 성공 - LoginFilter 클래스의 successfulAuthentication 메서드 실행");
+
+//    토큰 생성 시 필요한 데이터(유저 이메일, 권한, 만료시간)
+    //1. 로그인 검증 성공 유저의 이메일
+      String userEmail = authResult.getName();
+//  2. 로그인 검증 성공 유저의 권한
+    Collection<? extends GrantedAuthority> authorities = authResult.getAuthorities();
+    Iterator <? extends GrantedAuthority> iterator = authorities.iterator();
+    GrantedAuthority auth = iterator.next();
+    String role = auth.getAuthority();
+
+//    JWT 토큰을 생성
+    String token = jwtUtil.createJwt(userEmail, role, 1000 * 60 * 3); //1000 = 1초
+
+//    생성한 토큰을 응답 헤더에 담아 react에 전달
+    response.setHeader("Access-Control-Expose-Headers", "Authorization");
+    response.setHeader("Authorization", "Bearer " + token); // token쓸 때 암묵적인 약속으로 앞에 Bearer 붙임
+    response.setStatus(HttpStatus.OK.value());
   }
 
   // 로그인 검증 실패 시 실행하는 메서드
   @Override
   protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
     System.out.println("로그인 검증 실패 - LoginFilter 클래스의 unsuccessfulAuthentication 메서드 실행");
+
+    //401 : 인증 안됨
+    response.setStatus(401);
+//    response.setStatus(HttpStatus.UNAUTHORIZED.value()); // 위와 동일한 401
   }
 
 
