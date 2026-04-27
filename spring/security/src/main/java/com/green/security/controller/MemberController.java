@@ -16,6 +16,12 @@ import org.springframework.web.bind.annotation.*;
 public class MemberController {
   private final MemberService memberService;
 
+//  리액트 네이티브 테스트
+  @GetMapping("/t1")
+  public String t1(){
+    return "빙크스의 술";
+  }
+
 //  회원가입 api
 //  url : (POST) localhost:8080/members
   @PostMapping("")

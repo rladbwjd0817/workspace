@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!-- html에 thymeleaf 문법을 적용 -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    게시글 목록 페이지
+    <div th:text="${data}"></div>
+    <div>[[${ageData}]]</div>
+    <p th:text="${data + ageData}"></p>
+
+    <div>[[${boardList}]]</div>
+
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <td>글 번호</td>
+                    <td>제목</td>
+                    <td>작성자</td>
+                    <td>작성일</td>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 가짜 태그, if문 - 중괄호 안의 조건이 맞으면 태그 안 내용 실행 -->
+                 <!-- list가 비었다면 -->
+                <th:block th:if="${#lists.isEmpty(boardList)}">
+                    <tr>
+                        <td colspan="4">등록된 게시글이 없습니다.</td>
+                    </tr>
+                </th:block>
+                <!-- 조건의 내용이 맞지 않으면 unless 태그 안 내용 실행 -->
+                 <!-- list에 데이터가 있다면 -->
+                <th:block th:unless="${#lists.isEmpty(boardList)}">
+                    <tr th:each="board : ${boardList}">
+                        <td>[[${board.boardNum}]]</td>
+                        <td th:text="${board.title}"></td>
+                        <td>[[${board.writer}]]</td>
+                        <td>[[${#temporals.format(board.regDate,'yyyy-MM-dd HH:mm')}]]</td>
+                    </tr>
+                </th:block>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
