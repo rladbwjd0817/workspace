@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<!-- namespace에는 xml파일과 연결할 Mapper interface 파일명을 패키지를 포함하여 적어주세요 -->
+<mapper namespace="com.green.legacy.stu_manage.mapper.StuMapper">
+    <resultMap id="stu" type="com.green.legacy.stu_manage.dto.StuDTO">
+        <id     column="STU_NUM" property="stuNum" />
+        <result column="STU_NAME"    property="stuName" />
+        <result column="STU_YEAR"  property="stuYear" />
+        <result column="CLASS_NUM"   property="classNum" />
+        <association property="classDTO" resultMap="cls" />
+    </resultMap>
+
+    <resultMap id="cls" type="com.green.legacy.stu_manage.dto.ClassDTO">
+        <id     column="CLASS_NUM" property="classNum" />
+        <result column="CLASS_NAME"    property="className" />
+    </resultMap>
+
+    <resultMap id="score" type="com.green.legacy.stu_manage.dto.ScoreDTO">
+        <id     column="SCORE_NUM" property="scoreNum" />
+        <result column="KOR_SCORE"    property="korScore" />
+        <result column="ENG_SCORE"    property="engScore" />
+        <result column="MATH_SCORE"    property="mathScore" />
+        <result column="STU_NUM"    property="stuNum" />
+        <association property="stuDTO" resultMap="stu" />
+    </resultMap>
+
+
+
+    <!--전체 학급 정보 조회-->
+    <select id="selectStuList" resultMap="stu">
+        SELECT S.STU_NUM
+            , STU_NAME
+            , STU_YEAR
+            , C.CLASS_NUM
+            , CLASS_NAME
+        FROM ASYNC_STUDENT S
+        INNER JOIN ASYNC_CLASS C
+        ON C.CLASS_NUM = S.CLASS_NUM
+        <if test="classNum != 0">
+            WHERE C.CLASS_NUM = #{classNum}
+        </if>
+    </select>
+
+    <select id="selectClassList" resultMap="cls">
+        SELECT CLASS_NUM
+            , CLASS_NAME
+        FROM ASYNC_CLASS
+        ORDER BY CLASS_NUM DESC
+    </select>
+
+    <!-- 학생 점수 조회 -->
+    <select id="getScoreInfo" resultMap="score">
+        SELECT IFNULL(KOR_SCORE, 0) AS KOR_SCORE
+        , IFNULL(ENG_SCORE, 0) AS ENG_SCORE
+        , IFNULL(MATH_SCORE, 0) AS MATH_SCORE
+        , IFNULL(SCORE_NUM, 0) AS SCORE_NUM
+        , STU.STU_NUM
+        , STU_NAME
+        FROM ASYNC_SCORE SCORE RIGHT OUTER JOIN ASYNC_STUDENT STU
+        ON STU.STU_NUM = SCORE.STU_NUM
+        WHERE STU.STU_NUM = #{stuNum}
+    </select>
+
+    <insert id="saveScore">
+        INSERT INTO ASYNC_SCORE (
+            KOR_SCORE
+            , ENG_SCORE
+            , MATH_SCORE
+            , STU_NUM
+        )
+        VALUES (
+            #{korScore}
+            , #{engScore}
+            , #{mathScore}
+            , #{stuNum}
+        )
+        ON DUPLICATE KEY
+        UPDATE
+        KOR_SCORE = #{korScore},
+        ENG_SCORE = #{engScore},
+        MATH_SCORE = #{mathScore}
+    </insert>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

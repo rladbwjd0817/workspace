@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  치킨 종류 : [[${order.type}]] ([[${order.cnt}]]마리)<br>
+  추가사항 : 
+    <span th:each="option : ${order.options}" th:text="${option}"></span>
+  <br>
+  주문 금액 : [[${order.cnt * 10000 + #lists.size(order.options) * 1000} ]]  원<br>
+  요청 사항 : [[${order.request}]]<br>
+  주문자 : [[${delivery.buyer}]]<br>
+  연락처 : [[${delivery.tel}]]<br>
+  배달주소 : [[${delivery.address}]]<br>
+</body>
+</html>

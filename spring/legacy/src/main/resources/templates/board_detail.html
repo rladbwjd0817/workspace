@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h2>게시글 상세 페이지</h2>
+  글번호 : [[${board.boardNum}]]<br>
+  작성자 : [[${board.writer}]]<br>
+  제목 : [[${board.title}]]<br>
+  내용 : [[${board.content}]]<br>
+  작성일 : [[${board.regDate}]]<br>
+
+  <button type="button" onclick="location.href= '/boards/getList'">글목록</button>
+  <button type="button" onclick="history.back(-1)">글목록</button>
+
+  <button 
+    type="button" 
+    th:onclick="|location.href='@{/boards/update-form(boardNum=${board.boardNum})}'| " 
+  >글수정</button>
+  
+  <button 
+    type="button" 
+    th:onclick="|location.href=@{/boards/${num}}|"
+  >글삭제</button>
+
+  <button 
+    type="button" 
+    th:onclick="location.href=@{/boards/delete(boardNum=${num})}"
+  >글삭제</button>
+
+  <button 
+    type="button" 
+    th:onclick="deleteBoard([[${board.boardNum}]])"
+  >글삭제</button>
+
+  <script>
+    const aaa = (boardNum) => {
+      const result = confirm('삭제하시겠습니까?')
+
+      if(result){
+        location.href = `/boards/delete/${boardNum}/${title}` //@PathVariable
+        location.href = `/boards/delete?boardNum=${boardNum}&title=${title}` //@RequestParam
+
+      }
+
+    }
+  </script>
+
+  <div>
+    <form action="/reply/insert" method="post">
+      <input type="hidden" name="boardNum" th:value="${board.boardNum}">
+      <input type="text" placeholder="작성자" name="replyWriter">
+      <input type="text" placeholder="댓글 내용 입력" name="replyContent" style="width: 500px;">
+      <button type="submit">댓글 등록</button>
+    </form>
+
+    <th:block th:if="${#lists.isEmpty(replyList)}">
+      <p>댓글이 없습니다.</p>
+    </th:block>
+    <th:block th:unless="${#lists.isEmpty(replyList)}">
+      <form action="/reply/delete" method="post">
+        <div th:each="reply : ${replyList}">
+          <p>[[${reply.replyWriter}]]</p>
+          <p>[[${reply.regDate}]]</p>
+          <p>[[${reply.replyContent}]]</p>
+          <button type="submit">댓글 삭제</button>
+        </div>
+      </form>
+    </th:block>
+  </div>
+
+
+
+
+  <script src="/js/board_detail.js"></script>
+</body>
+</html>

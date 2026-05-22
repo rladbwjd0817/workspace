@@ -1,0 +1,15 @@
+.score-table {
+  border: 1px solid black;
+  text-align: center;
+}
+
+.score-table td{
+  border: 1px solid black;
+  padding: 4px 8px;
+}
+
+.score-table > input{
+  width: 80px;
+  text-align: center;
+}
+

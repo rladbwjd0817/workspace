@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h2>배달 정보</h2>
+
+  <form action="/show" method="post">
+    <input type="hidden" name="type" th:value="${order.type}">
+    <input type="hidden" name="cnt" th:value="${order.cnt}">
+    <input type="hidden" name="request" th:value="${order.request}">
+
+    <th:block th:each="option : ${order.options}">
+      <input type="hidden" name="options" th:value="${option}">
+    </th:block>
+
+    <!-- <input th:each="option : ${order.options}" type="hidden" name="options" th:value="${option}"> -->
+
+    주문자 <input type="text" name="buyer"> <br>
+    연락처 <input type="text" name="tel" placeholder="010-0000-0000 형태로 입력"> <br>
+    배달 주소 <input type="text" name="address"> <br>
+
+    <button type="submit">주문</button>
+  </form>
+</body>
+</html>
+
+<!-- value에는 배열과 리스트 올 수 없기에 하나하나 풀어줘야 함 -->

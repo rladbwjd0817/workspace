@@ -18,12 +18,50 @@
             , TITLE
             , WRITER
             , REG_DATE
-          FROM LEGACY_BOARD
-         ORDER BY REG_DATE DESC
-
+        FROM LEGACY_BOARD
+        ORDER BY BOARD_NUM DESC
+        LIMIT #{displayDataCnt} OFFSET #{offsetCnt}
     </select>
 
+    <insert id="insertBoard">
+        INSERT INTO LEGACY_BOARD (
+            TITLE
+            , WRITER
+            , CONTENT
+        ) VALUES(
+            #{title}
+            , #{writer}
+            , #{content}
+        )
+    </insert>
 
+    <select id="detailBoard" resultMap="board">
+        SELECT BOARD_NUM
+            , TITLE
+            , WRITER
+            , CONTENT
+            , REG_DATE
+        FROM LEGACY_BOARD
+        WHERE BOARD_NUM = #{boardNum}
+    </select>
+
+    <delete id="deleteBoard">
+        DELETE FROM LEGACY_BOARD
+        WHERE BOARD_NUM = #{boardNum}
+    </delete>
+
+    <update id="updateBoard">
+        UPDATE LEGACY_BOARD
+        SET TITLE = #{title}
+            , CONTENT = #{content}
+        WHERE BOARD_NUM = #{boardNum}
+    </update>
+
+    <!--게시글 전체 데이터 수 조회-->
+    <select id="selectBoardCnt" resultType="int">
+        SELECT COUNT(BOARD_NUM)
+          FROM LEGACY_BOARD
+    </select>
 
 </mapper>
 

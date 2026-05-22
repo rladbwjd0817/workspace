@@ -12,4 +12,5 @@ public class ReplyDTO {
   private String replyContent;
   private String replyWriter;    // LEGACY_USER.USER_ID 참조
   private LocalDateTime regDate;
+  private int boardNum;
 }

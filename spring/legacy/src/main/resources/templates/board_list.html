@@ -4,17 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <!-- css, js 파일은 resources 폴더 내의 static 기준으로 검색 -->
+    <link rel="stylesheet" href="/css/board_list.css">
 </head>
 <body>
     게시글 목록 페이지
-    <div th:text="${data}"></div>
-    <div>[[${ageData}]]</div>
-    <p th:text="${data + ageData}"></p>
-
-    <div>[[${boardList}]]</div>
-
+    <div>[[${boardDTO}]]</div>
     <div>
-        <table>
+        <table class="list-table">
             <thead>
                 <tr>
                     <td>글 번호</td>
@@ -36,7 +33,12 @@
                 <th:block th:unless="${#lists.isEmpty(boardList)}">
                     <tr th:each="board : ${boardList}">
                         <td>[[${board.boardNum}]]</td>
-                        <td th:text="${board.title}"></td>
+                        <td>
+                            <a 
+                                th:href="@{/boards/board_detail(boardNum = ${board.boardNum})}" 
+                                th:text="${board.title}"
+                            ></a>
+                        </td>
                         <td>[[${board.writer}]]</td>
                         <td>[[${#temporals.format(board.regDate,'yyyy-MM-dd HH:mm')}]]</td>
                     </tr>
@@ -45,5 +47,28 @@
         </table>
     </div>
 
+    <div>
+        <span th:if="${boardDTO.prev}">
+            <a href="@{/boards/getList(nowPage=${boardDTO.beginPage - 1})}">이전</a>
+        </span>
+        
+        <th:block th:each=" pageNum : ${#numbers.sequence(boardDTO.beginPage, boardDTO.endPage)}">
+            <span>
+                <a th:href="@{/boards/getList(nowPage=${pageNum})}">[[${pageNum}]]</a>
+            </span>
+        </th:block>
+
+        <span th:if="${boardDTO.next}">
+            <a th:href="@{/boards/getList(nowPage=${boardDTO.endPage + 1})}">다음</a>
+        </span>
+    </div>
+
+    <div>
+        <button type="button" onclick="goWrite()">글 쓰기</button>
+    </div>
+
+    <script src="/js/board_list.js"></script>
 </body>
 </html>
+<!-- board_list.html => controller => reg_board.html -->
+<!-- 페이지 이동시 바로 이동이 아니라 자바의 controller를 거쳐야 함 -->
